@@ -1,0 +1,13 @@
+{{- if .Values.backend.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+  namespace: {{ .Values.global.namespace }}
+  labels:
+    {{- include "shopnow.labels" . | nindent 4 }}
+    app: backend
+data:
+  PORT: {{ .Values.backend.port | quote }}
+  NODE_ENV: {{ .Values.backend.nodeEnv | quote }}
+{{- end }}

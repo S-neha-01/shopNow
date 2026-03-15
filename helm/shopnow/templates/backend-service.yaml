@@ -1,0 +1,20 @@
+{{- if .Values.backend.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: {{ .Values.global.namespace }}
+  labels:
+    {{- include "shopnow.labels" . | nindent 4 }}
+    app: backend
+spec:
+  type: NodePort
+  selector:
+    {{- include "shopnow.selectorLabels" (dict "component" "backend" "context" .) | nindent 4 }}
+  ports:
+    - name: http
+      port: {{ .Values.backend.port }}
+      targetPort: {{ .Values.backend.port }}
+      nodePort: {{ .Values.backend.nodePort }}
+      protocol: TCP
+{{- end }}

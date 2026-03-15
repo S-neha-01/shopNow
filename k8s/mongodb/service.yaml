@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-service
+  namespace: shopnow
+  labels:
+    app: mongodb
+    app.kubernetes.io/part-of: shopnow
+spec:
+  # ClusterIP makes MongoDB accessible only inside the cluster (no external exposure)
+  type: ClusterIP
+  clusterIP: None   # Headless service for StatefulSet DNS resolution (mongodb-0.mongodb-service)
+  selector:
+    app: mongodb
+  ports:
+    - name: mongo
+      port: 27017
+      targetPort: 27017
+      protocol: TCP

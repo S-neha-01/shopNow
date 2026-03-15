@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: shopnow
+  labels:
+    app: backend
+    app.kubernetes.io/part-of: shopnow
+spec:
+  # NodePort exposes the service on minikube's node IP for local testing
+  # Change to ClusterIP when using Ingress in production
+  type: NodePort
+  selector:
+    app: backend
+  ports:
+    - name: http
+      port: 5000
+      targetPort: 5000
+      nodePort: 30500   # Access via: minikube ip):30500
+      protocol: TCP
