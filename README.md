@@ -253,14 +253,6 @@ chmod +x deploy-minikube.sh
 # Check all pods are Running
 kubectl get pods -n shopnow
 
-# Expected output:
-# NAME                        READY   STATUS    RESTARTS
-# mongodb-0                   1/1     Running   0
-# backend-xxxx-xxxx           1/1     Running   0
-# backend-xxxx-xxxx           1/1     Running   0
-# frontend-xxxx-xxxx          1/1     Running   0
-# frontend-xxxx-xxxx          1/1     Running   0
-# admin-xxxx-xxxx             1/1     Running   0
 
 # Check services and NodePorts
 kubectl get svc -n shopnow
